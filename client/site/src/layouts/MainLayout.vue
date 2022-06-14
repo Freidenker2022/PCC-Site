@@ -24,7 +24,7 @@
         <q-list bordered separator>
           <q-item clickable v-ripple>
             <q-item-section>
-              <a href="#/home">
+              <a href="/home">
                 <q-item-label overline>PAGINA PRINCIPAL</q-item-label>
                 <q-item-label>Item with caption</q-item-label>
               </a>
@@ -32,7 +32,7 @@
           </q-item>
           <q-item clickable v-ripple>
             <q-item-section>
-              <a href="#/militant">
+              <a href="/militant">
                 <q-item-label overline>MILITANTES</q-item-label>
                 <q-item-label>Item with caption</q-item-label>
               </a>
@@ -40,7 +40,7 @@
           </q-item>
           <q-item clickable v-ripple>
             <q-item-section>
-              <a href="#/debt">
+              <a href="/debt">
                 <q-item-label overline>ATRASOS</q-item-label>
                 <q-item-label>Item with caption</q-item-label>
               </a>
@@ -48,7 +48,7 @@
           </q-item>
           <q-item clickable v-ripple>
             <q-item-section>
-              <a href="#/core">
+              <a href="/core">
                 <q-item-label overline>NUCLEOS</q-item-label>
                 <q-item-label>Item with caption</q-item-label>
               </a>

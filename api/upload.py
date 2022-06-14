@@ -85,5 +85,6 @@ def upload_data(request):
         except ValueError:
             pass
 
+    csv_file.close()
     fs.delete(file_name)
     return Response({'detail': 'Succesfully uploaded the data'})

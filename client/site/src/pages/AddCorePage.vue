@@ -131,7 +131,7 @@ export default {
     return {
       code,
       codeRef,
-      codeRules: [(val) => (val && val.length > 0) || "Please type something"],
+      codeRules: [(val) => (val && val.length > 0 && val.length < 6) || "Please type something"],
 
       name,
       nameRef,
