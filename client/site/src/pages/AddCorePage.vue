@@ -196,6 +196,7 @@ export default {
           municipalityRef.value.hasError
         ) {
           Notify.create({
+            icon: "error",
             color: "negative",
             message: "Faltan campos por rellenar.",
           });
@@ -216,7 +217,7 @@ export default {
                 Notify.create({
                   icon: "done",
                   color: "positive",
-                  message: "Núcleao creado.",
+                  message: "Núcleo creado.",
                 });
               })
               .catch((err) => {

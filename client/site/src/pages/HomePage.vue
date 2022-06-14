@@ -32,6 +32,7 @@
 <script>
 import axios from "axios";
 import { ref } from "vue";
+import { Notify } from "quasar";
 
 export default {
   setup() {
@@ -60,25 +61,29 @@ export default {
             Notify.create({
               icon: "done",
               color: "positive",
-              message: "Núcleao creado.",
+              message: "Archivo procesado.",
             });
           })
           .catch((err) => {
             console.log(err.response);
-            // let errors = err.response.data.code;
+            let error = err.request.statusText;
             // let msg = "";
             // for (let index = 0; index < errors.length; index++) {
             //   msg += errors[index];
             //   if (index !== msg.length - 1) msg += " ";
             // }
-            // Notify.create({
-            //   icon: "error",
-            //   color: "negative",
-            //   message: msg,
-            // });
+            Notify.create({
+              icon: "error",
+              color: "negative",
+              message: "ERROR! El archivo no se puede procesar.",
+            });
           });
       },
     };
   },
 };
 </script>
+
+<style>
+
+</style>
