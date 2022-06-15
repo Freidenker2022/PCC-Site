@@ -16,14 +16,14 @@
           <q-btn
             color="primary"
             :disable="loading"
-            label="Add row"
+            label="Agregar"
             @click="addRow"
           />
           <q-btn
             class="q-ml-sm"
             color="primary"
             :disable="loading"
-            label="Remove row"
+            label="Eliminar"
             @click="removeRow"
           />
           <q-btn
@@ -47,7 +47,6 @@
           </q-input>
         </template>
       </q-table>
-      <h5>Selected: {{ JSON.stringify(selected) }}</h5>
     </div>
     <div class="q-mt-md"></div>
   </q-page>
@@ -116,7 +115,12 @@ export default defineComponent({
         });
     },
     addRow() {},
-    removeRow() {},
+    removeRow() {
+      this.$axios.delete(
+        "http://localhost:8000/api/militant/" + this.selected[0].ci + "/"
+      );
+      window.location.reload();
+    },
     modifyRow() {},
   },
   created() {

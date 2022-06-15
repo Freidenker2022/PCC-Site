@@ -11,7 +11,7 @@
         ref="nameRef"
         filled
         v-model="name"
-        label="Nombre *"
+        label="Usuario:"
         lazy-rules
         :rules="nameRules"
       />
@@ -21,13 +21,13 @@
         filled
         type="password"
         v-model="password"
-        label="Contraseña *"
+        label="Contraseña:"
         lazy-rules
         :rules="passwordRules"
       />
 
       <div>
-        <q-btn label="Submit" type="submit" color="primary" />
+        <q-btn label="Iniciar" type="submit" color="primary" />
         <q-btn
           label="Reset"
           type="reset"

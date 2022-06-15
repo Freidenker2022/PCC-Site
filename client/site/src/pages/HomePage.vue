@@ -1,6 +1,8 @@
 <template>
   <div class="q-pa-md">
-    <div class="q-gutter-md" style="max-width: 300px">
+    <img class="ico" src="../../public/from_site_logo.png">
+    <h4 class="press">Bienvenido al sitio administrativo del PCC</h4>
+    <div class="gutter-md" style="max-width: 300px">
       <q-file
         filled
         bottom-slots
@@ -16,7 +18,6 @@
             @click.stop="add_file = null"
             class="cursor-pointer"
           />
-          <q-icon name="create_new_folder" @click.stop />
         </template>
 
         <template v-slot:hint> Field hint </template>
@@ -85,5 +86,13 @@ export default {
 </script>
 
 <style>
-
+.ico{
+  margin-left: 660px;
+}
+.press{
+  margin-left: 400px;
+}
+.gutter-md{
+  margin-left: 40%;
+}
 </style>

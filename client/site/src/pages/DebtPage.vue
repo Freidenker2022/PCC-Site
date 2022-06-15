@@ -9,6 +9,8 @@
         row-key="ci"
         :filter="filter"
         :separator="separator"
+        selection="single"
+        v-model:selected="selected"
       >
         <template v-slot:top>
           <q-input
@@ -24,7 +26,6 @@
           </q-input>
         </template>
       </q-table>
-      <h5>Selected: {{ JSON.stringify(selected) }}</h5>
     </div>
     <div class="q-mt-md"></div>
   </q-page>
@@ -76,6 +77,7 @@ export default defineComponent({
   name: "DebtsPage",
   data() {
     return {
+      selected: ref([]),
       columns,
       loading: ref(false),
       filter: ref(""),
