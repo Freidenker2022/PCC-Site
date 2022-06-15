@@ -1,4 +1,5 @@
 <template>
+<meta name="Login">
   <div class="pa-md" style="max-width: 1000px">
     <img class="ico" src="../../public/from_site_logo.png" alt="" />
     <h5 class="mssg">Por favor inicia sesión ...</h5>
@@ -43,6 +44,14 @@
 <script>
 import { useQuasar } from "quasar";
 import { ref } from "vue";
+import { useMeta } from "quasar";
+
+const metadata = {
+  title: 'PCC - Login',
+  // meta: {
+  //   description: {name: "PCC", content:"MilitantPage"}
+  // }
+}
 
 export default {
   setup() {
@@ -55,6 +64,7 @@ export default {
     const passwordRef = ref(null);
 
     return {
+      meta: useMeta(metadata),
       name,
       nameRef,
       nameRules: [

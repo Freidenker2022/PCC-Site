@@ -99,6 +99,11 @@ import { ref } from "vue";
 import axios from "axios";
 import { useQuasar } from "quasar";
 import { Notify } from "quasar";
+import { useMeta } from "quasar";
+
+const metadata = {
+  name: "PCC - Núcleo"
+}
 
 export default {
   setup() {
@@ -129,6 +134,7 @@ export default {
     const provinceRef = ref(null);
 
     return {
+      meta: useMeta(metadata),
       code,
       codeRef,
       codeRules: [(val) => (val && val.length > 0 && val.length < 6) || "Please type something"],

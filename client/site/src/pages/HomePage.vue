@@ -34,6 +34,14 @@
 import axios from "axios";
 import { ref } from "vue";
 import { Notify } from "quasar";
+import { useMeta } from "quasar";
+
+const metadata = {
+  title: 'PCC - Home',
+  // meta: {
+  //   description: {name: "Home", content:"MilitantPage"}
+  // }
+}
 
 export default {
   setup() {
@@ -44,6 +52,7 @@ export default {
         return formData;
       }, new FormData());
     return {
+      meta: useMeta(metadata),
       add_file,
       post() {
         let formData = new FormData();
@@ -51,7 +60,6 @@ export default {
         const options = {
           headers: { "content-type": "multipart/form-data" },
         };
-        // console.log(form_file);
         axios
           .post(
             "http://localhost:8000/api/upload-militant/",
@@ -66,13 +74,6 @@ export default {
             });
           })
           .catch((err) => {
-            console.log(err.response);
-            let error = err.request.statusText;
-            // let msg = "";
-            // for (let index = 0; index < errors.length; index++) {
-            //   msg += errors[index];
-            //   if (index !== msg.length - 1) msg += " ";
-            // }
             Notify.create({
               icon: "error",
               color: "negative",

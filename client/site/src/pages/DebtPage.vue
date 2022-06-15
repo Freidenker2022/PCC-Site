@@ -34,6 +34,7 @@
 import { defineComponent } from "vue";
 import { ref } from "vue";
 import axios from "src/boot/axios";
+import { useMeta } from "quasar";
 
 const columns = [
   {
@@ -72,11 +73,18 @@ const columns = [
     sortable: true,
   },
 ];
+const metadata = {
+  title: 'PCC - Atrasos',
+  meta: {
+    description: {name: "Militantes", content:"MilitantPage"}
+  }
+}
 
 export default defineComponent({
   name: "DebtsPage",
   data() {
     return {
+      meta: useMeta(metadata),
       selected: ref([]),
       columns,
       loading: ref(false),

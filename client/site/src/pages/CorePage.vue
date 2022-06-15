@@ -56,6 +56,7 @@
 import { defineComponent } from "vue";
 import { ref } from "vue";
 import axios from "axios";
+import { useMeta } from "quasar";
 
 const columns = [
   {
@@ -102,12 +103,18 @@ const columns = [
     sortable: true,
   },
 ];
-
+const metadata = {
+  title: 'PCC - Núcleos',
+  meta: {
+    description: {name: "Militantes", content:"MilitantPage"}
+  }
+}
 const selected = ref([]);
 export default defineComponent({
   name: "MilitantsPage",
   data() {
     return {
+      meta: useMeta(metadata),
       selected,
       columns,
       rows: [],
