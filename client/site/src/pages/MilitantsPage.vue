@@ -56,6 +56,7 @@
 import { defineComponent } from "vue";
 import { ref } from "vue";
 import axios from "src/boot/axios";
+import { Cookies } from "quasar";
 
 const columns = [
   {
@@ -87,6 +88,7 @@ const columns = [
     sortable: true,
   },
 ];
+
 export default defineComponent({
   name: "MilitantsPage",
   data() {
@@ -105,8 +107,14 @@ export default defineComponent({
   },
   methods: {
     getData() {
+      const token = Cookies.get('auth-token')
+      this.verifyAuth()
       this.$axios
-        .get("http://localhost:8000/api/militant/")
+        .get("http://localhost:8000/api/militant/", {
+          headers: {
+            'Authorization': token,
+          }
+        })
         .then((res) => {
           this.rows = res.data;
           console.log(res);
@@ -114,6 +122,13 @@ export default defineComponent({
         .catch((err) => {
           console.log(err);
         });
+    },
+    verifyAuth(){
+      if( !Cookies.has('auth-token'))
+      {
+        this.$router.push('/')
+        return
+      }
     },
     addRow() {},
     removeRow() {},

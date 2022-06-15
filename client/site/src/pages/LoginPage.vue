@@ -1,50 +1,30 @@
 <template>
-  <div class="pa-md" style="max-width: 1000px">
-    <img class="ico" src="../../public/from_site_logo.png" alt="" />
-    <h5 class="mssg">Por favor inicia sesión ...</h5>
-    <form
-      @submit.prevent.stop="onSubmit"
-      @reset.prevent.stop="onReset"
-      class="gutter-md"
-    >
-      <q-input
-        ref="nameRef"
-        filled
-        v-model="name"
-        label="Nombre *"
-        lazy-rules
-        :rules="nameRules"
-      />
+  <q-page>
+    <div class="pa-md" style="max-width: 1000px">
+      <img class="ico" src="../../public/from_site_logo.png" alt="" />
+      <h5 class="mssg">Por favor inicia sesión ...</h5>
+      <form @submit.prevent.stop="onSubmit" @reset.prevent.stop="onReset" class="gutter-md">
+        <q-input ref="nameRef" filled v-model="name" label="Nombre *" lazy-rules :rules="nameRules" />
 
-      <q-input
-        ref="passwordRef"
-        filled
-        type="password"
-        v-model="password"
-        label="Contraseña *"
-        lazy-rules
-        :rules="passwordRules"
-      />
+        <q-input ref="passwordRef" filled type="password" v-model="password" label="Contraseña *" lazy-rules
+          :rules="passwordRules" />
 
-      <div>
-        <q-btn label="Submit" type="submit" color="primary" />
-        <q-btn
-          label="Reset"
-          type="reset"
-          color="primary"
-          flat
-          class="q-ml-sm"
-        />
-      </div>
-    </form>
-  </div>
+        <div>
+          <q-btn label="Submit" type="submit" color="primary" />
+          <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm" />
+        </div>
+      </form>
+    </div>
+  </q-page>
 </template>
 
 <script>
 import { useQuasar } from "quasar";
-import { ref } from "vue";
+import { ref, defineComponent } from "vue";
+import { Cookies } from "quasar";
+import { api } from "src/boot/axios";
 
-export default {
+export default defineComponent({
   setup() {
     const $q = useQuasar();
 
@@ -75,11 +55,22 @@ export default {
         if (nameRef.value.hasError || passwordRef.value.hasError) {
           // form has error
         } else {
-          $q.notify({
-            icon: "done",
-            color: "positive",
-            message: "Submitted",
-          });
+          api.post("http://localhost:8000/api/token-auth/", { 'username': name.value, 'password': password.value })
+            .then((res) => {
+              console.log(res);
+              $q.notify({
+                icon: "done",
+                color: "positive",
+                message: "Submitted",
+              });
+              Cookies.remove('auth-token');
+              Cookies.set('auth-token', res.data.token);
+              this.$router.push('/militant');
+              return
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         }
       },
 
@@ -92,7 +83,7 @@ export default {
       },
     };
   },
-};
+});
 </script>
 
 <style>
@@ -101,10 +92,12 @@ export default {
   margin-top: 0em;
   display: block;
 }
+
 .ico {
   margin-left: 670px;
   margin-top: 3em;
 }
+
 .mssg {
   margin-left: 600px;
 }

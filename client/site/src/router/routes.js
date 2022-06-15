@@ -1,4 +1,11 @@
 const routes = [
+  //{
+  //  path: "/",
+  //  component: () => import("layouts/LoginLayout.vue"),
+  //  children:[
+  //  ],
+  //},
+
   {
     path: "/",
     component: () => import("layouts/MainLayout.vue"),
@@ -11,6 +18,7 @@ const routes = [
       { path: "/home", component: () => import("pages/HomePage.vue") },
       { path: "/test", component: () => import("pages/TestPage.vue") },
     ],
+
   },
 
   // Always leave this as last one,
