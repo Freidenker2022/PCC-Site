@@ -143,6 +143,7 @@ export default defineComponent({
     },
     addRow() {
       window.open("./addcore");
+      window.close();
     },
     removeRow() {
       this.$axios.delete(
